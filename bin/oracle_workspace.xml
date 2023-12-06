@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace name="default">
+    <FileSystem class="org.apache.jackrabbit.core.fs.db.OracleFileSystem">
+        <param name="dataSourceName" value="ds1"/>
+        <param name="schemaObjectPrefix" value="${wsp.name}_" />
+    </FileSystem>
+    <PersistenceManager class="org.apache.jackrabbit.core.persistence.pool.OraclePersistenceManager">
+        <param name="dataSourceName" value="ds1"/>
+        <param name="schemaObjectPrefix" value="${wsp.name}_" />
+    </PersistenceManager>
+</Workspace>

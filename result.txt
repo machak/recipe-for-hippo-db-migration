@@ -1,0 +1,62 @@
+//############################################
+// RUN
+//############################################
+
+❯ sh bin/migrate.sh \
+  --conf conf/source-repository.xml \
+  --backup-conf conf/backup-repository.xml \
+  --repo source-storage \
+  --backup-repo backup-storage
+Using JAVA_HOME:       /home/user/jdk
+Using repository directory source-storage 
+Writing log messages to source_repository/log
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/user/projects/tmp/recipe-for-hippo-db-migration/lib/hippo-addon-checker-2.7.0.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/user/projects/tmp/recipe-for-hippo-db-migration/lib/jackrabbit-standalone-2.20.13.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/user/projects/tmp/recipe-for-hippo-db-migration/lib/log4j-slf4j-impl-2.17.1.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+Welcome to Apache Jackrabbit!
+-------------------------------
+Creating a repository copy in backup-storage
+The repository has been successfully copied.
+
+ //############################################
+ // POSTGRES
+ //############################################
+
+ docker exec -it postgreshippo bash
+
+ root@d4da60aadbbf:/# psql -h localhost -U postgres
+ psql (16.1 (Debian 16.1-1.pgdg120+1))
+ Type "help" for help.
+
+ postgres=# \c hippo
+ You are now connected to database "hippo" as user "postgres".
+ hippo=# \dt
+                    List of relations
+  Schema |            Name            | Type  |  Owner
+ --------+----------------------------+-------+----------
+  public | datastore                  | table | postgres
+  public | default_binval             | table | postgres
+  public | default_bundle             | table | postgres
+  public | default_fsentry            | table | postgres
+  public | default_names              | table | postgres
+  public | default_refs               | table | postgres
+  public | repository_fsentry         | table | postgres
+  public | repository_global_revision | table | postgres
+  public | repository_journal         | table | postgres
+  public | repository_local_revisions | table | postgres
+  public | version_binval             | table | postgres
+  public | version_bundle             | table | postgres
+  public | version_fsentry            | table | postgres
+  public | version_names              | table | postgres
+  public | version_refs               | table | postgres
+ (15 rows)
+
+ hippo=#
+
+
+
+
